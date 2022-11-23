@@ -1,18 +1,95 @@
 <html>
     <head>
+        <link rel="stylesheet" href="../css/w3.css">
         <link rel="stylesheet" href="../css/whomp.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body>
         <button onclick="newGame()">New Game</button>
         <div id="words"></div>
 
-        <table>
-            <tr id="3"></tr>
-            <tr id="4"></tr>
-            <tr id="5"></tr>
-            <tr id="6"></tr>
-        </table>
+        <div id="usedLetterRow">
+            <table class="bordered">
+                <tr>
+                    <td id="usedLetterRow1" class="bigGameFont"></td>
+                    <td id="usedLetterRow2" class="bigGameFont"></td>
+                    <td id="usedLetterRow3" class="bigGameFont"></td>
+                    <td id="usedLetterRow4" class="bigGameFont"></td>
+                    <td id="usedLetterRow5" class="bigGameFont"></td>
+                    <td id="usedLetterRow6" class="bigGameFont"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div id="unusedLetterRow">
+            <table class="bordered">
+                <tr>
+                    <td id="unusedLetterRow1" class="bigGameFont"></td>
+                    <td id="unusedLetterRow2" class="bigGameFont"></td>
+                    <td id="unusedLetterRow3" class="bigGameFont"></td>
+                    <td id="unusedLetterRow4" class="bigGameFont"></td>
+                    <td id="unusedLetterRow5" class="bigGameFont"></td>
+                    <td id="unusedLetterRow6" class="bigGameFont"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div class="w3-container">
+            <table>
+                <tr>
+                    <td><button>Mix Up</button></td>
+                    <td><button>Enter</button></td>
+                    <td><button>Backspace</button></td>
+                    <td><button>Give Up</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="w3-container">
+            <strong>Answers</strong>
+            <table>
+                <tr>
+                    <td id="answer1"></td>
+                    <td id="answer8"></td>
+                    <td id="answer15"></td>
+                    <td id="answer22"></td>
+                </tr>
+                <tr>
+                    <td id="answer2"></td>
+                    <td id="answer9"></td>
+                    <td id="answer16"></td>
+                    <td id="answer23"></td>
+                </tr>
+                <tr>
+                    <td id="answer3"></td>
+                    <td id="answer10"></td>
+                    <td id="answer17"></td>
+                    <td id="answer24"></td>
+                </tr>
+                <tr>
+                    <td id="answer4"></td>
+                    <td id="answer11"></td>
+                    <td id="answer18"></td>
+                    <td id="answer25"></td>
+                </tr>
+                <tr>
+                    <td id="answer5"></td>
+                    <td id="answer12"></td>
+                    <td id="answer19"></td>
+                    <td id="answer26"></td>
+                </tr>
+                <tr>
+                    <td id="answer6"></td>
+                    <td id="answer13"></td>
+                    <td id="answer20"></td>
+                    <td id="answer27"></td>
+                </tr>
+                <tr>
+                    <td id="answer7"></td>
+                    <td id="answer14"></td>
+                    <td id="answer21"></td>
+                    <td id="answer28"></td>
+                </tr>
+            </table>
+        </div>
     </body>
     <script src="../js/dictionary.js"></script>
     <script src="../js/whomp.js"></script>

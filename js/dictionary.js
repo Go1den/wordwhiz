@@ -20036,7 +20036,7 @@ class Dictionary {
             for (let j=0; j<wordSet.length; j++) {
                 let substring = wordSet[j];
                 if (this.#isValidSubstring(substring, word)) {
-                    result.push(substring);
+                    result.push(substring.toUpperCase());
                 }
             }
         }
@@ -20057,7 +20057,7 @@ class Dictionary {
                     } else {
                         tempArray = new Array();
                     }
-                    tempArray.push(substring);
+                    tempArray.push(substring.toUpperCase());
                     result.set(substring.length, tempArray);
                 }
             }

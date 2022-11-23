@@ -1,21 +1,35 @@
+body {
+    background-color: #aaaaaa;
+}
+
 table {
-	display: table;
-    padding: 4px;
+    /* padding: 4px; */
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 table tr {
-	display: table-cell;
-    vertical-align: top;
-    padding: 4px;
+    /* vertical-align: top; */
+    /* padding: 4px; */
 }
 
 table tr td {
-	display: block;
     width: 200px;
-    border: 1px solid black;
-    padding: 4px;
+    height: 45px;
 }
 
 img {
     padding: 4px;
+}
+
+.bigGameFont {
+    font-size: 48px;
+}
+
+.bordered td {
+    border: 2px solid black;
+    width: 100px;
+    height: 80px;
+    text-align: center;
 }
