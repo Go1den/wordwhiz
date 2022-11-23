@@ -1,6 +1,18 @@
 class Whomp {
 
+    dictionary;
+    seedWord;
+    upperCaseSeedWord;
+    letters;
+    answerMap;
+    answerArray;
+
     constructor(dictionary) {
+        this.dictionary = dictionary;
+        this.newGame();
+    }
+
+    newGame() {
         this.seedWord = dictionary.getRandomSixLetterWord();
         this.upperCaseSeedWord = this.seedWord.toUpperCase();
         this.letters = this.seedWord.split('');
@@ -10,20 +22,22 @@ class Whomp {
         console.log(this.answerMap);
         console.log(this.answerArray);
         this.letters = this.upperCaseSeedWord.split('');
-        this.scrambledLetters = this.scramble([...this.letters]);
         this.#clearAllTables();
         this.#populateAnswerTable();
-        this.#populateUnusedLetterTable();
+        this.scramble();
     }
 
-    scramble(array) {
-        let currentIndex = array.length,  randomIndex;
+    scramble() {
+        let tempArray = [...this.letters];
+        let currentIndex = tempArray.length,  randomIndex;
         while (currentIndex != 0) {
           randomIndex = Math.floor(Math.random() * currentIndex);
           currentIndex--;
-          [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+          [tempArray[currentIndex], tempArray[randomIndex]] = [tempArray[randomIndex], tempArray[currentIndex]];
         }
-        return array;
+        this.scrambledLetters = tempArray;
+        this.#clearUsedLetterRow();
+        this.#populateUnusedLetterTable();
     }
 
     #clearAllTables() {
@@ -33,6 +47,12 @@ class Whomp {
         for(let i=1; i<7; i++) {
             document.getElementById("usedLetterRow" + i.toString()).innerHTML = '';
             document.getElementById("unusedLetterRow" + i.toString()).innerHTML = '';
+        }
+    }
+
+    #clearUsedLetterRow() {
+        for(let i=1; i<7; i++) {
+            document.getElementById("usedLetterRow" + i.toString()).innerHTML = '';
         }
     }
 
@@ -74,7 +94,14 @@ class Whomp {
 }
 
 let dictionary = new Dictionary();
+let whomp = new Whomp(dictionary);
 
 function newGame() {
-    let whomp = new Whomp(dictionary);
+    console.log("new gmae");
+    whomp.newGame();
+}
+
+function scramble() {
+    console.log("Scramb");
+    whomp.scramble();
 }

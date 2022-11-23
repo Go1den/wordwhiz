@@ -4,9 +4,8 @@
         <link rel="stylesheet" href="../css/whomp.css">
     </head>
     <body>
-        <button onclick="newGame()">New Game</button>
-        <div id="words"></div>
-
+        <br>
+        <br>
         <div id="usedLetterRow">
             <table class="bordered">
                 <tr>
@@ -36,7 +35,7 @@
         <div class="w3-container">
             <table>
                 <tr>
-                    <td><button>Mix Up</button></td>
+                    <td><button onclick="scramble()">Mix Up</button></td>
                     <td><button>Enter</button></td>
                     <td><button>Backspace</button></td>
                     <td><button>Give Up</button></td>
@@ -89,6 +88,9 @@
                     <td id="answer28"></td>
                 </tr>
             </table>
+        </div>
+        <div>
+            <button onclick="newGame()">New Game</button>
         </div>
     </body>
     <script src="../js/dictionary.js"></script>
