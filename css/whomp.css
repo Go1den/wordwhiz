@@ -2,16 +2,10 @@ body {
     background-color: #aaaaaa;
 }
 
-table {
-    /* padding: 4px; */
+div {
     width: 800px;
     margin-left: auto;
     margin-right: auto;
-}
-
-table tr {
-    /* vertical-align: top; */
-    /* padding: 4px; */
 }
 
 table tr td {
@@ -23,13 +17,13 @@ img {
     padding: 4px;
 }
 
-.bigGameFont {
-    font-size: 48px;
+.bordered {
+    border: 2px solid black;
 }
 
-.bordered td {
-    border: 2px solid black;
-    width: 100px;
-    height: 80px;
+.letterRow {
+    /* border: 2px solid black; */
+    width: 110px;
+    height: 110px;
     text-align: center;
 }

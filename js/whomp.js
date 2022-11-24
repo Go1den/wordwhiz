@@ -46,13 +46,24 @@ class Whomp {
     }
 
     submit() {
-        let word = document.getElementById("usedLetterRow1").innerHTML + document.getElementById("usedLetterRow2").innerHTML + document.getElementById("usedLetterRow3").innerHTML
-        + document.getElementById("usedLetterRow4").innerHTML + document.getElementById("usedLetterRow5").innerHTML + document.getElementById("usedLetterRow6").innerHTML;
+        let word = '';
+        let moreLetters = true;
+        let index=1;
+        do {
+            let nextLetter = document.getElementById("usedLetterRow" + index.toString()).innerHTML[26];
+            console.log(nextLetter);
+            if (nextLetter !== undefined) {
+                word += nextLetter;
+                index++;
+            } else {
+                moreLetters = false;
+            }
+        } while (moreLetters && index <= 6);
+    
+        let answerArrayIndex = this.answerArray.indexOf(word);
 
-        let index = this.answerArray.indexOf(word);
-
-        if (index >= 0) {
-            this.revealWord(index);
+        if (answerArrayIndex >= 0) {
+            this.revealWord(answerArrayIndex);
             this.scoreWord(word.length);
         }
         for (let i=0; i<word.length; i++) {
@@ -126,23 +137,9 @@ class Whomp {
     #populateUnusedLetterTable() {
         for (let i=0; i<this.scrambledLetters.length; i++) {
             let currentLetter = this.scrambledLetters[i];
-            document.getElementById("unusedLetterRow" + (i+1).toString()).innerHTML = currentLetter;
+            document.getElementById("unusedLetterRow" + (i+1).toString()).innerHTML = '<image src=\"../images/tiles/' + currentLetter +'.png\"/>';
         }
     }
-
-    // #populateAnswerTable() { old way using the map saving just in case
-    //     let keys = Array.from(this.answerMap.keys());
-    //     for (let i=0; i<keys.length; i++) {
-    //         let currentKey = keys[i];
-    //         let currentValues = this.answerMap.get(currentKey);
-    //         for (let j=0; j<currentValues.length; j++) {
-    //             let currentWord = currentValues[j];
-
-    //             // document.getElementById(currentKey.toString()).innerHTML += '<td id=\"' + currentWord + '\">' + currentWord + '</td>';
-    //             document.getElementById(currentKey.toString()).innerHTML += '<td id=\"' + currentWord + '\">' + this.#buildBlankHTML(currentWord.length) + '</td>';
-    //         }
-    //     }
-    // }
 
     #buildBlankHTML(lettersInWord) {
         let result = '';
@@ -157,31 +154,25 @@ let dictionary = new Dictionary();
 let whomp = new Whomp(dictionary);
 
 function newGame() {
-    console.log("new game");
     whomp.newGame();
 }
 
 function scramble() {
-    console.log("Scramble");
     whomp.scramble();
 }
 
 function addLetter(field, index) {
-    console.log("addLetter");
     whomp.addLetter(field, index);
 }
 
 function putLetterBack() {
-    console.log("putletterback");
     whomp.putLetterBack();
 }
 
 function submit() {
-    console.log("submit");
     whomp.submit();
 }
 
 function giveUp() {
-    console.log("give up");
     whomp.giveUp();
 }
