@@ -4090,7 +4090,6 @@ class Dictionary {
     "smit",
     "smog",
     "smug",
-    "smut",
     "snag",
     "snap",
     "snaw",
