@@ -9,10 +9,10 @@
         <div class="w3-container" id="usedLetterRow">
             <table class="bordered">
                 <tr>
-                    <td id="usedLetterRow1" class="letterRow"></td>
-                    <td id="usedLetterRow2" class="letterRow"></td>
-                    <td id="usedLetterRow3" class="letterRow"></td>
-                    <td id="usedLetterRow4" class="letterRow"></td>
+                    <td id="usedLetterRow1" class="letterRow"><image src="../images/tiles/W.png"/></td>
+                    <td id="usedLetterRow2" class="letterRow"><image src="../images/tiles/O.png"/></td>
+                    <td id="usedLetterRow3" class="letterRow"><image src="../images/tiles/R.png"/></td>
+                    <td id="usedLetterRow4" class="letterRow"><image src="../images/tiles/D.png"/></td>
                     <td id="usedLetterRow5" class="letterRow"></td>
                     <td id="usedLetterRow6" class="letterRow"></td>
                 </tr>
@@ -22,11 +22,11 @@
         <div class="w3-container" id="unusedLetterRow">
             <table class="bordered">
                 <tr>
-                    <td id="unusedLetterRow1" class="letterRow" onclick="addLetter('unusedLetterRow1', 1)"></td>
-                    <td id="unusedLetterRow2" class="letterRow" onclick="addLetter('unusedLetterRow2', 2)"></td>
-                    <td id="unusedLetterRow3" class="letterRow" onclick="addLetter('unusedLetterRow3', 3)"></td>
-                    <td id="unusedLetterRow4" class="letterRow" onclick="addLetter('unusedLetterRow4', 4)"></td>
-                    <td id="unusedLetterRow5" class="letterRow" onclick="addLetter('unusedLetterRow5', 5)"></td>
+                    <td id="unusedLetterRow1" class="letterRow" onclick="addLetter('unusedLetterRow1', 1)"><image src="../images/tiles/W.png"/></td>
+                    <td id="unusedLetterRow2" class="letterRow" onclick="addLetter('unusedLetterRow2', 2)"><image src="../images/tiles/H.png"/></td>
+                    <td id="unusedLetterRow3" class="letterRow" onclick="addLetter('unusedLetterRow3', 3)"><image src="../images/tiles/O.png"/></td>
+                    <td id="unusedLetterRow4" class="letterRow" onclick="addLetter('unusedLetterRow4', 4)"><image src="../images/tiles/M.png"/></td>
+                    <td id="unusedLetterRow5" class="letterRow" onclick="addLetter('unusedLetterRow5', 5)"><image src="../images/tiles/P.png"/></td>
                     <td id="unusedLetterRow6" class="letterRow" onclick="addLetter('unusedLetterRow6', 6)"></td>
                 </tr>
             </table>
@@ -35,10 +35,10 @@
         <div class="w3-container">
             <table>
                 <tr>
-                    <td><button onclick="scramble()">Mix Up</button></td>
-                    <td><button onclick="submit()">Enter</button></td>
-                    <td><button onclick="putLetterBack()">Backspace</button></td>
-                    <td><button onclick="giveUp()">Give Up</button></td>
+                    <td><button onclick="scramble(this)">Scramble</button></td>
+                    <td><button onclick="submit(this)">Enter</button></td>
+                    <td><button onclick="putLetterBack(this)">Backspace</button></td>
+                    <td><button onclick="giveUp(this)">Give Up</button></td>
                 </tr>
             </table>
         </div>
@@ -90,11 +90,13 @@
             </table>
         </div>
         <div>
-            <button onclick="newGame()">New Game</button>
+            <button onclick="newGame(this)">New Game</button>
             <br>
             <label>Score: </label><span id="score">0</span>
         </div>
     </body>
     <script src="../js/dictionary.js"></script>
     <script src="../js/whomp.js"></script>
+    <script src="../js/soundboard.js"></script>
+    <script src="../js/main.js"></script>
 </html>
