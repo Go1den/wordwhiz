@@ -71,6 +71,18 @@ class Whomp {
         }
     }
 
+    typeLetter(letter) {
+        for (let i=0; i<this.scrambledLetters.length; i++) {
+            let field = "unusedLetterRow"+ (i+1).toString();
+            if (this.scrambledLetters[i] === letter && document.getElementById(field).innerHTML !== undefined && document.getElementById(field).innerHTML.length > 0) {
+                console.log("hey index is " + i);
+                console.log(document.getElementById(field).innerHTML);
+                addLetter(field, i+1);
+                break;
+            }
+        }
+    }
+
     revealWord(index) {
         let word = this.answerArray[index];
         document.getElementById("answer" + (index+1).toString()).innerHTML = word;
@@ -176,3 +188,16 @@ function submit() {
 function giveUp() {
     whomp.giveUp();
 }
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Backspace") {
+        putLetterBack();
+    } else if (event.key === "Enter") {
+        submit();
+    } else if (event.code.startsWith("Key") && event.code.length == 4) {
+        let charCode = event.code.charCodeAt(3);
+        if (charCode >= 65 && charCode <= 90) {
+            whomp.typeLetter(event.code.charAt(3));
+        }
+    }
+});
