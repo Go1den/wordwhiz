@@ -22,12 +22,12 @@
         <div id="unusedLetterRow">
             <table class="bordered">
                 <tr>
-                    <td id="unusedLetterRow1" class="bigGameFont"></td>
-                    <td id="unusedLetterRow2" class="bigGameFont"></td>
-                    <td id="unusedLetterRow3" class="bigGameFont"></td>
-                    <td id="unusedLetterRow4" class="bigGameFont"></td>
-                    <td id="unusedLetterRow5" class="bigGameFont"></td>
-                    <td id="unusedLetterRow6" class="bigGameFont"></td>
+                    <td id="unusedLetterRow1" class="bigGameFont" onclick="addLetter('unusedLetterRow1', 1)"></td>
+                    <td id="unusedLetterRow2" class="bigGameFont" onclick="addLetter('unusedLetterRow2', 2)"></td>
+                    <td id="unusedLetterRow3" class="bigGameFont" onclick="addLetter('unusedLetterRow3', 3)"></td>
+                    <td id="unusedLetterRow4" class="bigGameFont" onclick="addLetter('unusedLetterRow4', 4)"></td>
+                    <td id="unusedLetterRow5" class="bigGameFont" onclick="addLetter('unusedLetterRow5', 5)"></td>
+                    <td id="unusedLetterRow6" class="bigGameFont" onclick="addLetter('unusedLetterRow6', 6)"></td>
                 </tr>
             </table>
         </div>
@@ -36,9 +36,9 @@
             <table>
                 <tr>
                     <td><button onclick="scramble()">Mix Up</button></td>
-                    <td><button>Enter</button></td>
-                    <td><button>Backspace</button></td>
-                    <td><button>Give Up</button></td>
+                    <td><button onclick="submit()">Enter</button></td>
+                    <td><button onclick="putLetterBack()">Backspace</button></td>
+                    <td><button onclick="giveUp()">Give Up</button></td>
                 </tr>
             </table>
         </div>
@@ -91,6 +91,8 @@
         </div>
         <div>
             <button onclick="newGame()">New Game</button>
+            <br>
+            <label>Score: </label><span id="score">0</span>
         </div>
     </body>
     <script src="../js/dictionary.js"></script>
