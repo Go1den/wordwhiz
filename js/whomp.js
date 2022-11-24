@@ -57,7 +57,7 @@ class Whomp {
         let moreLetters = true;
         let index=1;
         do {
-            let nextLetter = document.getElementById("usedLetterRow" + index.toString()).innerHTML[26];
+            let nextLetter = document.getElementById("usedLetterRow" + index.toString()).innerHTML[23];
             if (nextLetter !== undefined) {
                 word += nextLetter;
                 index++;
@@ -99,7 +99,7 @@ class Whomp {
         let newInnerHTML = '';
         for(let i=0; i<charArray.length; i++) {
             let letter = charArray[i];
-            newInnerHTML += '<image src=\"../images/tiles/' + letter + '.png\" width=30px; height=30px;/>';
+            newInnerHTML += '<image src=\"images/tiles/' + letter + '.png\" width=30px; height=30px;/>';
         }
         document.getElementById("answer" + (index+1).toString()).innerHTML = newInnerHTML;
     }
@@ -170,14 +170,14 @@ class Whomp {
     #populateUnusedLetterTable() {
         for (let i=0; i<this.scrambledLetters.length; i++) {
             let currentLetter = this.scrambledLetters[i];
-            document.getElementById("unusedLetterRow" + (i+1).toString()).innerHTML = '<image src=\"../images/tiles/' + currentLetter +'.png\"/>';
+            document.getElementById("unusedLetterRow" + (i+1).toString()).innerHTML = '<image src=\"images/tiles/' + currentLetter +'.png\"/>';
         }
     }
 
     #buildBlankHTML(lettersInWord) {
         let result = '';
         for(let i=0; i<lettersInWord; i++) {
-            result += '<image src=\"../images/tiles/blank.png\" width=30px; height=30px;/>';
+            result += '<image src=\"images/tiles/blank.png\" width=30px; height=30px;/>';
         }
         return result;
     }
