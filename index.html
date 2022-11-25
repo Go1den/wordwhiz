@@ -7,42 +7,6 @@
     <body>
         <br>
         <br>
-        <div class="w3-container" id="usedLetterRow">
-            <table class="bordered">
-                <tr>
-                    <td id="usedLetterRow1" class="letterRow"><image src="images/tiles/W.png"/></td>
-                    <td id="usedLetterRow2" class="letterRow"><image src="images/tiles/O.png"/></td>
-                    <td id="usedLetterRow3" class="letterRow"><image src="images/tiles/R.png"/></td>
-                    <td id="usedLetterRow4" class="letterRow"><image src="images/tiles/D.png"/></td>
-                    <td id="usedLetterRow5" class="letterRow"></td>
-                    <td id="usedLetterRow6" class="letterRow"></td>
-                </tr>
-            </table>
-        </div>
-        <br>
-        <div class="w3-container" id="unusedLetterRow">
-            <table class="bordered">
-                <tr>
-                    <td id="unusedLetterRow1" class="letterRow" onclick="addLetter('unusedLetterRow1', 1)"><image src="images/tiles/W.png"/></td>
-                    <td id="unusedLetterRow2" class="letterRow" onclick="addLetter('unusedLetterRow2', 2)"><image src="images/tiles/H.png"/></td>
-                    <td id="unusedLetterRow3" class="letterRow" onclick="addLetter('unusedLetterRow3', 3)"><image src="images/tiles/O.png"/></td>
-                    <td id="unusedLetterRow4" class="letterRow" onclick="addLetter('unusedLetterRow4', 4)"><image src="images/tiles/M.png"/></td>
-                    <td id="unusedLetterRow5" class="letterRow" onclick="addLetter('unusedLetterRow5', 5)"><image src="images/tiles/P.png"/></td>
-                    <td id="unusedLetterRow6" class="letterRow" onclick="addLetter('unusedLetterRow6', 6)"></td>
-                </tr>
-            </table>
-        </div>
-        <br>
-        <div class="w3-container">
-            <table>
-                <tr>
-                    <td><button onclick="scramble(this)">Scramble</button></td>
-                    <td><button onclick="submit(this)">Enter</button></td>
-                    <td><button onclick="putLetterBack(this)">Backspace</button></td>
-                    <td><button onclick="giveUp(this)">Give Up</button></td>
-                </tr>
-            </table>
-        </div>
         <div class="w3-container">
             <strong>Answers</strong>
             <table>
@@ -87,6 +51,43 @@
                     <td id="answer14"></td>
                     <td id="answer21"></td>
                     <td id="answer28"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div class="w3-container" id="usedLetterRow">
+            <table class="bordered">
+                <tr>
+                    <td id="usedLetterRow1" class="letterRow"><image src="images/tiles/W.png"/></td>
+                    <td id="usedLetterRow2" class="letterRow"><image src="images/tiles/O.png"/></td>
+                    <td id="usedLetterRow3" class="letterRow"><image src="images/tiles/R.png"/></td>
+                    <td id="usedLetterRow4" class="letterRow"><image src="images/tiles/D.png"/></td>
+                    <td id="usedLetterRow5" class="letterRow"></td>
+                    <td id="usedLetterRow6" class="letterRow"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div class="w3-container" id="unusedLetterRow">
+            <table>
+                <tr>
+                    <td id="unusedLetterRow1" class="letterRow" onclick="addLetter('unusedLetterRow1', 1)"><image src="images/tiles/W.png"/></td>
+                    <td id="unusedLetterRow2" class="letterRow" onclick="addLetter('unusedLetterRow2', 2)"><image src="images/tiles/H.png"/></td>
+                    <td id="unusedLetterRow3" class="letterRow" onclick="addLetter('unusedLetterRow3', 3)"><image src="images/tiles/O.png"/></td>
+                    <td id="unusedLetterRow4" class="letterRow" onclick="addLetter('unusedLetterRow4', 4)"><image src="images/tiles/M.png"/></td>
+                    <td id="unusedLetterRow5" class="letterRow" onclick="addLetter('unusedLetterRow5', 5)"><image src="images/tiles/P.png"/></td>
+                    <td id="unusedLetterRow6" class="letterRow" onclick="addLetter('unusedLetterRow6', 6)"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div class="w3-container">
+            <table>
+                <tr>
+                    <td><button onclick="scramble(this)">Scramble</button></td>
+                    <td><button onclick="submit(this)">Enter</button></td>
+                    <td><button onclick="putLetterBack(this)">Backspace</button></td>
+                    <td><button onclick="giveUp(this)">Give Up</button></td>
                 </tr>
             </table>
         </div>

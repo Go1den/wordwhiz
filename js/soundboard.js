@@ -18,4 +18,8 @@ class Soundboard {
         targetSound.volume = volume;
         targetSound.play();
     }
+
+    stopAllSounds() {
+        this.soundMap.forEach((v) => v.pause());
+    }
 }

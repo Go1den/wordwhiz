@@ -45,6 +45,7 @@ class Whomp {
             this.revealWord(i);
         }
         this.isGameGoing = false;
+        this.soundboard.stopAllSounds();
     }
 
     scoreWord(points) {
