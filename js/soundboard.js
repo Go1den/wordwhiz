@@ -3,6 +3,7 @@ class Soundboard {
     wrongSound = new Audio("audio/wrong.mp3");
     shuffleSound = new Audio("audio/shuffle.mp3");
     thinkSound = new Audio("audio/think1.mp3");
+    clearSound = new Audio("audio/clear.mp3");
     soundMap = new Map();
 
     constructor () {
@@ -10,6 +11,7 @@ class Soundboard {
         this.soundMap.set("wrongSound", this.wrongSound);
         this.soundMap.set("shuffleSound", this.shuffleSound);
         this.soundMap.set("thinkSound", this.thinkSound);
+        this.soundMap.set("clearSound", this.clearSound);
     }
 
     playSound(soundName, volume) {

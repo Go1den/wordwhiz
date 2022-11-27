@@ -19985,7 +19985,6 @@ class Dictionary {
 
     getRandomSixLetterWord() {
         let index = Math.floor(Math.random() * this.#sixLetterWords.length);
-        console.log(this.#sixLetterWords[index]);
         return this.#sixLetterWords[index];
     }
 

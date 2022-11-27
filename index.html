@@ -135,8 +135,8 @@
             </table>
         </div>
         <!-- <br> -->
-        <div class="w3-container offAtStart">
-            <table>
+        <div class="w3-container">
+            <table class="offAtStart offInBetweenGames">
                 <tr>
                     <td><button onclick="scramble(this)">Scramble</button></td>
                     <td><button onclick="submit(this)">Enter</button></td>
@@ -144,9 +144,11 @@
                     <td><button onclick="giveUp(this)">Give Up</button></td>
                 </tr>
             </table>
-        </div>
-        <div class="w3-container onAtStartOnly">
-            <button class="centerButton" onclick="newGame(this)">New Game</button>
+            <table class="onAtStartOnly onInBetweenGames">
+                <tr>
+                    <td><button onclick="newGame(this)">New Game</button></td>
+                </tr>
+            </table>
         </div>
     </body>
     <script src="js/dictionary.js"></script>

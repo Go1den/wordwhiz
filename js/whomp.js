@@ -68,8 +68,28 @@ class Whomp {
         for (let i=0; i<this.answerArray.length; i++) {
             this.revealWord(i);
         }
+        this.#endGame();
+    }
+
+    #endGame() {
         this.isGameGoing = false;
-        this.soundboard.stopAllSounds();
+        this.soundboard.stopMusic();
+        this.#displayInBetweenGamesElements();
+        this.#hideInBetweenGamesElements();
+    }
+    
+    #displayInBetweenGamesElements() {
+        let gameElements = document.querySelectorAll('.onInBetweenGames');
+        gameElements.forEach(el => {
+            el.style.display = '';
+        });
+    }
+
+    #hideInBetweenGamesElements() {
+        let gameElements = document.querySelectorAll('.offInBetweenGames');
+        gameElements.forEach(el => {
+            el.style.display = 'none';
+        });
     }
 
     scoreWord(points) {
@@ -99,7 +119,8 @@ class Whomp {
             this.scoreWord(word.length);
             this.foundWords.push(word);
             if (this.foundWords.length === this.answerArray.length) {
-                this.soundboard.stopAllSounds();
+                this.#endGame();
+                this.soundboard.playSound("clearSound", .5);
             } else {
                 this.soundboard.playSound("correctSound", 1);
             }
@@ -144,7 +165,6 @@ class Whomp {
     }
 
     putLetterBack() {
-        console.log("put letter back");
         if (this.usedLetterIndex > 1) {
             let index = this.originalPositionArray.pop();
             let letterToBeRemoved = document.getElementById("usedLetterRow" + (this.usedLetterIndex - 1).toString()).innerHTML;
@@ -156,7 +176,6 @@ class Whomp {
     }
 
     scramble(playSound) {
-        console.log("Scramble");
         let tempArray = [...this.letters];
         let currentIndex = tempArray.length,  randomIndex;
         while (currentIndex != 0) {
