@@ -7,9 +7,39 @@
     <body>
         <br>
         <br>
-        <div class="w3-container">
-            <strong>Answers</strong>
+        <div class="w3-container offAtStart">
             <table>
+                <tr>
+                    <td>
+                        <table class="bordered">
+                            <caption><strong>Round</strong></caption>
+                            <tr>
+                                <td class="text" id="round"><strong>1</strong></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table class="bordered">
+                            <caption><strong>Score</strong></caption>
+                            <tr>
+                                <td class="text" id="score"><strong>0</strong></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table class="bordered">
+                            <caption><strong>Time</strong></caption>
+                        <tr>
+                            <td class="text" id="timer"><strong>2:00</strong></td>
+                        </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="w3-container offAtStart">
+            <table class="bordered">
+                <caption><strong>Answer Board</strong></caption>
                 <tr>
                     <td id="answer1"></td>
                     <td id="answer8"></td>
@@ -54,9 +84,32 @@
                 </tr>
             </table>
         </div>
-        <br>
-        <div class="w3-container" id="usedLetterRow">
+        <!-- <br> -->
+        <div class="w3-container onAtStartOnly" id="wordWhompRow1">
+            <table>
+                <tr>
+                    <td class="letterRow"><image src="images/tiles/W.png"/></td>
+                    <td class="letterRow"><image src="images/tiles/O.png"/></td>
+                    <td class="letterRow"><image src="images/tiles/R.png"/></td>
+                    <td class="letterRow"><image src="images/tiles/D.png"/></td>
+                </tr>
+            </table>
+        </div>
+        <!-- <br> -->
+        <div class="w3-container onAtStartOnly" id="wordWhompRow2">
+            <table>
+                <tr>
+                    <td class="letterRow"><image src="images/tiles/W.png"/></td>
+                    <td class="letterRow"><image src="images/tiles/H.png"/></td>
+                    <td class="letterRow"><image src="images/tiles/O.png"/></td>
+                    <td class="letterRow"><image src="images/tiles/M.png"/></td>
+                    <td class="letterRow"><image src="images/tiles/P.png"/></td>
+                </tr>
+            </table>
+        </div>
+        <div class="w3-container offAtStart" id="usedLetterRow">
             <table class="bordered">
+                <caption><strong>Current Guess</strong></caption>
                 <tr>
                     <td id="usedLetterRow1" class="letterRow"><image src="images/tiles/W.png"/></td>
                     <td id="usedLetterRow2" class="letterRow"><image src="images/tiles/O.png"/></td>
@@ -67,9 +120,10 @@
                 </tr>
             </table>
         </div>
-        <br>
-        <div class="w3-container" id="unusedLetterRow">
-            <table>
+        <!-- <br> -->
+        <div class="w3-container offAtStart" id="unusedLetterRow">
+            <table class="bordered">
+                <caption><strong>Your Tiles</strong></caption>
                 <tr>
                     <td id="unusedLetterRow1" class="letterRow" onclick="addLetter('unusedLetterRow1', 1)"><image src="images/tiles/W.png"/></td>
                     <td id="unusedLetterRow2" class="letterRow" onclick="addLetter('unusedLetterRow2', 2)"><image src="images/tiles/H.png"/></td>
@@ -80,8 +134,8 @@
                 </tr>
             </table>
         </div>
-        <br>
-        <div class="w3-container">
+        <!-- <br> -->
+        <div class="w3-container offAtStart">
             <table>
                 <tr>
                     <td><button onclick="scramble(this)">Scramble</button></td>
@@ -91,10 +145,8 @@
                 </tr>
             </table>
         </div>
-        <div>
-            <button onclick="newGame(this)">New Game</button>
-            <br>
-            <label>Score: </label><span id="score">0</span>
+        <div class="w3-container onAtStartOnly">
+            <button class="centerButton" onclick="newGame(this)">New Game</button>
         </div>
     </body>
     <script src="js/dictionary.js"></script>

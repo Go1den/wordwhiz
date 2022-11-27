@@ -2,7 +2,7 @@ class Soundboard {
     correctSound = new Audio("audio/correct.mp3");
     wrongSound = new Audio("audio/wrong.mp3");
     shuffleSound = new Audio("audio/shuffle.mp3");
-    thinkSound = new Audio("audio/think.mp3");
+    thinkSound = new Audio("audio/think1.mp3");
     soundMap = new Map();
 
     constructor () {
@@ -21,5 +21,9 @@ class Soundboard {
 
     stopAllSounds() {
         this.soundMap.forEach((v) => v.pause());
+    }
+
+    stopMusic() {
+        this.thinkSound.pause();
     }
 }

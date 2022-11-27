@@ -33,7 +33,31 @@ class Whomp {
         this.#clearAllTables();
         this.#populateAnswerTable();
         this.scramble(false);
+        this.turnOffWelcomeScreenElements();
+        this.addBorderedClass();
+        this.turnOnGameElements();
         this.soundboard.playSound("thinkSound", 0.1);
+    }
+
+    turnOffWelcomeScreenElements() {
+        let startOnlyElements = document.querySelectorAll('.onAtStartOnly');
+        startOnlyElements.forEach(el => {
+            el.style.display = "none";
+        });
+    }
+
+    turnOnGameElements() {
+        let gameElements = document.querySelectorAll('.offAtStart');
+        gameElements.forEach(el => {
+            el.style.display = 'initial';
+        });
+    }
+    
+    addBorderedClass() {
+        let gameElements = document.querySelectorAll('.toBeBordered');
+        gameElements.forEach(el => {
+            el.classList.add("bordered");
+        });
     }
 
     getIsGameGoing() {
@@ -50,7 +74,7 @@ class Whomp {
 
     scoreWord(points) {
         this.score += points;
-        document.getElementById("score").innerHTML = this.score;
+        document.getElementById("score").innerHTML = '<strong>' + this.score + '</strong>';
     }
 
     submit() {
@@ -74,7 +98,11 @@ class Whomp {
             this.revealWord(answerArrayIndex);
             this.scoreWord(word.length);
             this.foundWords.push(word);
-            this.soundboard.playSound("correctSound", 1);
+            if (this.foundWords.length === this.answerArray.length) {
+                this.soundboard.stopAllSounds();
+            } else {
+                this.soundboard.playSound("correctSound", 1);
+            }
         } else {
             this.soundboard.playSound("wrongSound", 1);
         }
