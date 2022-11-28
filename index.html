@@ -136,7 +136,7 @@
         </div>
         <!-- <br> -->
         <div class="w3-container">
-            <table class="offAtStart offInBetweenGames">
+            <table class="offAtStart gameButtons">
                 <tr>
                     <td><button onclick="scramble(this)">Scramble</button></td>
                     <td><button onclick="submit(this)">Enter</button></td>
@@ -144,9 +144,14 @@
                     <td><button onclick="giveUp(this)">Give Up</button></td>
                 </tr>
             </table>
-            <table class="onAtStartOnly onInBetweenGames">
+            <table class="onAtStartOnly newGame">
                 <tr>
                     <td><button onclick="newGame(this)">New Game</button></td>
+                </tr>
+            </table>
+            <table class="round">
+                <tr>
+                    <td><button onclick="nextRound(this)">Next Round</button></td>
                 </tr>
             </table>
         </div>
@@ -154,5 +159,7 @@
     <script src="js/dictionary.js"></script>
     <script src="js/whomp.js"></script>
     <script src="js/soundboard.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/pagemanager.js"></script>
     <script src="js/main.js"></script>
 </html>

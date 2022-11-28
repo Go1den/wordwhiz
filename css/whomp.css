@@ -62,6 +62,10 @@ button {
     display: none;
   }
 
+  .round {
+    display: none;
+  }
+
   .centerButton {
     margin: 0;
     position: absolute;

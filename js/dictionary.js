@@ -20006,6 +20006,7 @@ class Dictionary {
             for (let j=0; j<wordSet.length; j++) {
                 let substring = wordSet[j];
                 if (this.#isValidSubstring(substring, word)) {
+                    console.log(substring);
                     result.push(substring.toUpperCase());
                 }
             }

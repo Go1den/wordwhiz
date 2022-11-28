@@ -1,9 +1,12 @@
-let dictionary = new Dictionary();
-let soundboard = new Soundboard();
-let whomp = new Whomp(dictionary, soundboard);
+let whomp = new Whomp();
 
 function newGame(e) {
     whomp.newGame();
+    e.blur();
+}
+
+function nextRound(e) {
+    whomp.nextRound();
     e.blur();
 }
 

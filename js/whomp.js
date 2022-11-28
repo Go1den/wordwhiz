@@ -12,52 +12,41 @@ class Whomp {
     foundWords = new Array();
     soundboard;
     isGameGoing = false;
+    timer;
+    round;
+    pageManager;
 
 
-    constructor(dictionary, soundboard) {
-        this.dictionary = dictionary;
-        this.soundboard = soundboard;
+    constructor() {
+        this.dictionary = new Dictionary();
+        this.soundboard = new Soundboard();
+        this.timer = new Timer(150, this);
+        this.pageManager = new PageManager();
     }
 
     newGame() {
         this.isGameGoing = true;
+        this.round = 1;
+        this.setRound();
         this.score = 0;
+        this.setScore();
         this.foundWords = new Array();
-        this.seedWord = dictionary.getRandomSixLetterWord();
+        this.seedWord = this.dictionary.getRandomSixLetterWord();
         this.upperCaseSeedWord = this.seedWord.toUpperCase();
         this.letters = this.seedWord.split('');
-        this.answerMap = dictionary.getValidWordMap(this.seedWord);
-        this.answerArray = dictionary.getValidWordArray(this.seedWord);
+        this.answerMap = this.dictionary.getValidWordMap(this.seedWord);
+        this.answerArray = this.dictionary.getValidWordArray(this.seedWord);
         this.originalPositionArray = [];
         this.letters = this.upperCaseSeedWord.split('');
-        this.#clearAllTables();
-        this.#populateAnswerTable();
+        this.pageManager.clearAllTables();
+        this.pageManager.populateAnswerTable(this.answerArray);
         this.scramble(false);
-        this.turnOffWelcomeScreenElements();
-        this.addBorderedClass();
-        this.turnOnGameElements();
-        this.soundboard.playSound("thinkSound", 0.1);
-    }
-
-    turnOffWelcomeScreenElements() {
-        let startOnlyElements = document.querySelectorAll('.onAtStartOnly');
-        startOnlyElements.forEach(el => {
-            el.style.display = "none";
-        });
-    }
-
-    turnOnGameElements() {
-        let gameElements = document.querySelectorAll('.offAtStart');
-        gameElements.forEach(el => {
-            el.style.display = 'initial';
-        });
-    }
-    
-    addBorderedClass() {
-        let gameElements = document.querySelectorAll('.toBeBordered');
-        gameElements.forEach(el => {
-            el.classList.add("bordered");
-        });
+        this.pageManager.turnOffWelcomeScreenElements();
+        this.pageManager.addBorderedClass();
+        this.pageManager.turnOnGameElements();
+        this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1);
+        this.timer.setTimer(150);
+        this.timer.startTimer();
     }
 
     getIsGameGoing() {
@@ -73,28 +62,48 @@ class Whomp {
 
     #endGame() {
         this.isGameGoing = false;
+        this.timer.stopTimer();
         this.soundboard.stopMusic();
-        this.#displayInBetweenGamesElements();
-        this.#hideInBetweenGamesElements();
-    }
-    
-    #displayInBetweenGamesElements() {
-        let gameElements = document.querySelectorAll('.onInBetweenGames');
-        gameElements.forEach(el => {
-            el.style.display = '';
-        });
+        this.pageManager.displayInBetweenGamesElements();
+        this.pageManager.hideInBetweenGamesElements();
     }
 
-    #hideInBetweenGamesElements() {
-        let gameElements = document.querySelectorAll('.offInBetweenGames');
-        gameElements.forEach(el => {
-            el.style.display = 'none';
-        });
+    nextRound() {
+        this.round++;
+        this.setRound();
+        this.isGameGoing = true;
+        this.foundWords = new Array();
+        this.seedWord = this.dictionary.getRandomSixLetterWord();
+        this.upperCaseSeedWord = this.seedWord.toUpperCase();
+        this.letters = this.seedWord.split('');
+        this.answerMap = this.dictionary.getValidWordMap(this.seedWord);
+        this.answerArray = this.dictionary.getValidWordArray(this.seedWord);
+        this.originalPositionArray = [];
+        this.letters = this.upperCaseSeedWord.split('');
+        this.pageManager.clearAllTables();
+        this.pageManager.hideInBetweenRoundsElements();
+        this.pageManager.populateAnswerTable(this.answerArray);
+        this.scramble(false);
+        this.pageManager.hideNextRoundButton();
+        this.pageManager.turnOffWelcomeScreenElements();
+        this.pageManager.addBorderedClass();
+        this.pageManager.turnOnGameElements();
+        this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1);
+        this.timer.setTimer(150);
+        this.timer.startTimer();
     }
 
     scoreWord(points) {
         this.score += points;
+        this.setScore();
+    }
+
+    setScore() {
         document.getElementById("score").innerHTML = '<strong>' + this.score + '</strong>';
+    }
+
+    setRound() {
+        document.getElementById("round").innerHTML = '<strong>' + this.round + '</strong>';
     }
 
     submit() {
@@ -116,11 +125,15 @@ class Whomp {
 
         if (answerArrayIndex >= 0 && foundWordsIndex < 0) {
             this.revealWord(answerArrayIndex);
-            this.scoreWord(word.length);
+            this.scoreWord(Math.pow(2, word.length - 3) * 50);
             this.foundWords.push(word);
             if (this.foundWords.length === this.answerArray.length) {
                 this.#endGame();
-                this.soundboard.playSound("clearSound", .5);
+                this.pageManager.displayInBetweenRoundsElements();
+                this.pageManager.hideInBetweenGamesElements();
+                this.pageManager.hideNewGameButton();
+                this.pageManager.displayNextRoundButton();
+                this.soundboard.playSound("clearSound", .1);
             } else {
                 this.soundboard.playSound("correctSound", 1);
             }
@@ -184,49 +197,11 @@ class Whomp {
           [tempArray[currentIndex], tempArray[randomIndex]] = [tempArray[randomIndex], tempArray[currentIndex]];
         }
         this.scrambledLetters = tempArray;
-        this.#clearUsedLetterRow();
-        this.#populateUnusedLetterTable();
+        this.pageManager.clearUsedLetterRow();
+        this.pageManager.populateUnusedLetterTable(this.scrambledLetters);
         this.usedLetterIndex = 1;
         if (playSound) {
             this.soundboard.playSound("shuffleSound", 1);
         }
-    }
-
-    #clearAllTables() {
-        for(let i=1; i<29; i++) {
-            document.getElementById("answer" + i.toString()).innerHTML = '';
-        }
-        for(let i=1; i<7; i++) {
-            document.getElementById("usedLetterRow" + i.toString()).innerHTML = '';
-            document.getElementById("unusedLetterRow" + i.toString()).innerHTML = '';
-        }
-    }
-
-    #clearUsedLetterRow() {
-        for(let i=1; i<7; i++) {
-            document.getElementById("usedLetterRow" + i.toString()).innerHTML = '';
-        }
-    }
-
-    #populateAnswerTable() {
-        for (let i=0; i<this.answerArray.length; i++) {
-            let currentWord = this.answerArray[i];
-            document.getElementById("answer" + (i+1).toString()).innerHTML += this.#buildBlankHTML(currentWord.length);
-        }
-    }
-
-    #populateUnusedLetterTable() {
-        for (let i=0; i<this.scrambledLetters.length; i++) {
-            let currentLetter = this.scrambledLetters[i];
-            document.getElementById("unusedLetterRow" + (i+1).toString()).innerHTML = '<image src=\"images/tiles/' + currentLetter +'.png\"/>';
-        }
-    }
-
-    #buildBlankHTML(lettersInWord) {
-        let result = '';
-        for(let i=0; i<lettersInWord; i++) {
-            result += '<image src=\"images/tiles/blank.png\" width=30px; height=30px;/>';
-        }
-        return result;
     }
 }
