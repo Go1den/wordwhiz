@@ -50,6 +50,8 @@ document.addEventListener("keydown", function(event) {
             whiz.putLetterBack();
         } else if (event.key === "Enter") {
             whiz.submit();
+        } else if (event.key === " ") {
+            whiz.scramble(true);
         } else if (event.code.startsWith("Key") && event.code.length == 4) {
             let charCode = event.code.charCodeAt(3);
             if (charCode >= 65 && charCode <= 90) {

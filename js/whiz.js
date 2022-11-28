@@ -199,19 +199,21 @@ class Whiz {
     }
 
     scramble(playSound) {
-        let tempArray = [...this.letters];
-        let currentIndex = tempArray.length,  randomIndex;
-        while (currentIndex != 0) {
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex--;
-          [tempArray[currentIndex], tempArray[randomIndex]] = [tempArray[randomIndex], tempArray[currentIndex]];
-        }
-        this.scrambledLetters = tempArray;
-        this.pageManager.clearUsedLetterRow();
-        this.pageManager.populateUnusedLetterTable(this.scrambledLetters);
-        this.usedLetterIndex = 1;
-        if (playSound) {
-            this.soundboard.playSound("shuffleSound", 0.4);
+        if (this.isGameGoing) {
+            let tempArray = [...this.letters];
+            let currentIndex = tempArray.length,  randomIndex;
+            while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [tempArray[currentIndex], tempArray[randomIndex]] = [tempArray[randomIndex], tempArray[currentIndex]];
+            }
+            this.scrambledLetters = tempArray;
+            this.pageManager.clearUsedLetterRow();
+            this.pageManager.populateUnusedLetterTable(this.scrambledLetters);
+            this.usedLetterIndex = 1;
+            if (playSound) {
+                this.soundboard.playSound("shuffleSound", 0.4);
+            }
         }
     }
 }
