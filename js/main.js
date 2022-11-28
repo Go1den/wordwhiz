@@ -44,6 +44,13 @@ function giveUp(e) {
     e.blur();
 }
 
+function putWord(e, index) {
+    if (whiz.getIsGameGoing()) {
+        whiz.typePreviouslyFoundWord(index);
+    }
+    e.blur();
+}
+
 document.addEventListener("keydown", function(event) {
     if (whiz.getIsGameGoing()) {
         if (event.key === "Backspace") {

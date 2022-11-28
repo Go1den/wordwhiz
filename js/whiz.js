@@ -272,4 +272,16 @@ class Whiz {
             }
         }
     }
+
+    typePreviouslyFoundWord(index) {
+        let selectedWord = this.answerArray[index-1];
+        if (this.foundWords.indexOf(selectedWord) >= 0) {
+            do {
+                this.putLetterBack();
+            } while (this.usedLetterIndex > 1);
+            for (let i=0; i<selectedWord.length; i++) {
+                this.typeLetter(selectedWord.charAt(i));
+            }
+        }
+    }
 }
