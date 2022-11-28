@@ -14,7 +14,7 @@ If you find any, [please report them to me on this Github](https://github.com/Go
 
 # How to Play
 
-Try to make as many words as you can using the provided letters before the time runs out. If you score the points needed to advance, you will move on to another round with a harder threshold. Make it all the way to round 8 and the timer will reduce to just 2 minutes. How high of a score can you get?
+Try to make as many words as you can using the provided letters before the time runs out. If you score enough points, you will move on to another round with a harder threshold. Make it all the way to round 8 and the timer will reduce to just 2 minutes. How high of a score can you get?
 
 # Keyboard Controls
 Space - Scrambles the tiles  
