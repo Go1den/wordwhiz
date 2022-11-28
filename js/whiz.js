@@ -17,6 +17,7 @@ class Whiz {
     pageManager;
     totalRoundPoints;
     roundThresholdPoints;
+    lastSubmittedGuess = '';
 
 
     constructor() {
@@ -29,6 +30,7 @@ class Whiz {
     newGame() {
         this.isGameGoing = true;
         this.usedLetterIndex = 1;
+        this.lastSubmittedGuess = '';
         this.round = 1;
         this.setRound();
         this.score = 0;
@@ -106,6 +108,7 @@ class Whiz {
     nextRound() {
         this.round++;
         this.setRound();
+        this.lastSubmittedGuess = '';
         this.usedLetterIndex = 1;
         this.isGameGoing = true;
         this.foundWords = new Array();
@@ -180,20 +183,23 @@ class Whiz {
         let answerArrayIndex = this.answerArray.indexOf(word);
         let foundWordsIndex = this.foundWords.indexOf(word);
 
-        if (answerArrayIndex >= 0 && foundWordsIndex < 0) {
-            this.revealWord(answerArrayIndex, '#4CAF50');
-            this.scoreWord(Math.pow(2, word.length - 3) * 50);
-            this.foundWords.push(word);
-            if (this.foundWords.length === this.answerArray.length) {
-                this.#endRound(false);
+        if (word.length > 0) {
+            this.lastSubmittedGuess = word;
+            if (answerArrayIndex >= 0 && foundWordsIndex < 0) {
+                this.revealWord(answerArrayIndex, '#4CAF50');
+                this.scoreWord(Math.pow(2, word.length - 3) * 50);
+                this.foundWords.push(word);
+                if (this.foundWords.length === this.answerArray.length) {
+                    this.#endRound(false);
+                } else {
+                    this.soundboard.playSound("correctSound", 0.5);
+                }
             } else {
-                this.soundboard.playSound("correctSound", 0.5);
+                this.soundboard.playSound("wrongSound", 1);
             }
-        } else {
-            this.soundboard.playSound("wrongSound", 1);
-        }
-        for (let i=0; i<word.length; i++) {
-            this.putLetterBack();
+            for (let i=0; i<word.length; i++) {
+                this.putLetterBack();
+            }
         }
         return;
     }
@@ -282,10 +288,9 @@ class Whiz {
         if (this.usedLetterIndex > 1) {
             whiz.submit();
         } else {
-            if (this.foundWords.length > 0 && this.usedLetterIndex === 1) {
-                let lastWord = this.foundWords.at(-1);
-                for (let i=0; i<lastWord.length; i++) {
-                    this.typeLetter(lastWord.charAt(i));
+            if (this.lastSubmittedGuess !== '' && this.usedLetterIndex === 1) {
+                for (let i=0; i<this.lastSubmittedGuess.length; i++) {
+                    this.typeLetter(this.lastSubmittedGuess.charAt(i));
                 }
             }
         }
