@@ -1,6 +1,6 @@
 # Word Whiz
 
-Word Whiz is based on popular word scramble games like Word Whomp and Text Twist.  
+[Word Whiz](https://go1den.github.io/wordwhiz) is based on popular word scramble games like Word Whomp and Text Twist.  
 Try to unscramble all of the words in the time limit.  
 You can use your keyboard or mouse to play.
 
