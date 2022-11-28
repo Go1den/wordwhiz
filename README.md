@@ -22,5 +22,5 @@ Enter - Submits word
 Backspace - Removes last typed letter  
 
 # Mouse Controls
-Click a letter to add it the word.  
+Click a letter to add it to the word.  
 Click a word that's already in the answer board to have it automatically typed again.  
