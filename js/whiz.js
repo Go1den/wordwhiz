@@ -15,6 +15,8 @@ class Whiz {
     timer;
     round;
     pageManager;
+    totalRoundPoints;
+    roundThresholdPoints;
 
 
     constructor() {
@@ -42,12 +44,31 @@ class Whiz {
         this.pageManager.clearAllTables();
         this.pageManager.populateAnswerTable(this.answerArray);
         this.scramble(false);
+        this.setTotalPossibleRoundPoints();
+        this.setRoundThreshold();
+        this.setThreshold();
         this.pageManager.turnOffWelcomeScreenElements();
         this.pageManager.addBorderedClass();
         this.pageManager.turnOnGameElements();
         this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1);
         this.timer.setTimer(150);
         this.timer.startTimer();
+    }
+
+    setRoundThreshold() {
+        this.roundThresholdPoints = Math.floor(this.totalRoundPoints * (.65 + (.05 * this.round)));
+        if (this.roundThresholdPoints > this.totalRoundPoints) {
+            this.roundThresholdPoints = this.totalRoundPoints;
+        } 
+    }
+
+    setTotalPossibleRoundPoints() {
+        let total = 0;
+        for (let i=0; i<this.answerArray.length; i++) {
+            let wordScore = Math.pow(2, this.answerArray[i].length - 3) * 50;
+            total += wordScore;
+        }
+        this.totalRoundPoints = total;
     }
 
     getIsGameGoing() {
@@ -69,10 +90,13 @@ class Whiz {
         this.soundboard.stopMusic();
         this.pageManager.displayInBetweenGamesElements();
         this.pageManager.hideInBetweenGamesElements();
-        if (isGameOver) {
+        if (isGameOver && this.roundThresholdPoints > 0) {
             this.soundboard.playSound("gameOverSound", .1);
         }
         else {
+            if (!isGameOver) {
+                this.scoreWord(1000);
+            }
             this.pageManager.hideNewGameButton();
             this.pageManager.displayNextRoundButton();
             this.soundboard.playSound("clearSound", .1);
@@ -96,6 +120,9 @@ class Whiz {
         this.pageManager.hideInBetweenRoundsElements();
         this.pageManager.populateAnswerTable(this.answerArray);
         this.scramble(false);
+        this.setTotalPossibleRoundPoints();
+        this.setRoundThreshold();
+        this.setThreshold();
         this.pageManager.hideNextRoundButton();
         this.pageManager.turnOffWelcomeScreenElements();
         this.pageManager.addBorderedClass();
@@ -105,13 +132,27 @@ class Whiz {
         } else {
             this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1);
         }
-        this.timer.setTimer(150);
+        if (this.round > 7) {
+            this.timer.setTimer(120);
+        } else {
+            this.timer.setTimer(150);
+        }
         this.timer.startTimer();
     }
 
     scoreWord(points) {
         this.score += points;
         this.setScore();
+        this.roundThresholdPoints -= points;
+        this.setThreshold();
+    }
+
+    setThreshold() {
+        if (this.roundThresholdPoints > 0) {
+            document.getElementById("threshold").innerHTML = '<strong>' + this.roundThresholdPoints + '</strong>';
+        } else {
+            document.getElementById("threshold").innerHTML = '<strong>' + 'Clear!' + '</strong>';
+        }
     }
 
     setScore() {
