@@ -26,6 +26,7 @@ class Whiz {
 
     newGame() {
         this.isGameGoing = true;
+        this.usedLetterIndex = 1;
         this.round = 1;
         this.setRound();
         this.score = 0;
@@ -81,6 +82,7 @@ class Whiz {
     nextRound() {
         this.round++;
         this.setRound();
+        this.usedLetterIndex = 1;
         this.isGameGoing = true;
         this.foundWords = new Array();
         this.seedWord = this.dictionary.getRandomSixLetterWord();
@@ -213,6 +215,19 @@ class Whiz {
             this.usedLetterIndex = 1;
             if (playSound) {
                 this.soundboard.playSound("shuffleSound", 0.4);
+            }
+        }
+    }
+
+    processEnter() {
+        if (this.usedLetterIndex > 1) {
+            whiz.submit();
+        } else {
+            if (this.foundWords.length > 0 && this.usedLetterIndex === 1) {
+                let lastWord = this.foundWords.at(-1);
+                for (let i=0; i<lastWord.length; i++) {
+                    this.typeLetter(lastWord.charAt(i));
+                }
             }
         }
     }

@@ -49,7 +49,7 @@ document.addEventListener("keydown", function(event) {
         if (event.key === "Backspace") {
             whiz.putLetterBack();
         } else if (event.key === "Enter") {
-            whiz.submit();
+            whiz.processEnter();
         } else if (event.key === " ") {
             whiz.scramble(true);
         } else if (event.code.startsWith("Key") && event.code.length == 4) {
