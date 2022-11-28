@@ -211,7 +211,7 @@ class Whiz {
         this.pageManager.populateUnusedLetterTable(this.scrambledLetters);
         this.usedLetterIndex = 1;
         if (playSound) {
-            this.soundboard.playSound("shuffleSound", 1);
+            this.soundboard.playSound("shuffleSound", 0.5);
         }
     }
 }
