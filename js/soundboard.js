@@ -11,6 +11,7 @@ class Soundboard {
     thinkSound7 = new Audio("audio/think7.mp3");
     thinkSound8 = new Audio("audio/think8.mp3");
     clearSound = new Audio("audio/clear.mp3");
+    gameOverSound = new Audio("audio/gameover.mp3");
     soundMap = new Map();
 
     constructor () {
@@ -26,6 +27,7 @@ class Soundboard {
         this.soundMap.set("thinkSound7", this.thinkSound7);
         this.soundMap.set("thinkSound8", this.thinkSound8);
         this.soundMap.set("clearSound", this.clearSound);
+        this.soundMap.set("gameOverSound", this.gameOverSound);
     }
 
     playSound(soundName, volume) {

@@ -57,15 +57,23 @@ class Whomp {
         for (let i=0; i<this.answerArray.length; i++) {
             this.revealWord(i);
         }
-        this.#endGame();
+        this.#endRound(true);
     }
 
-    #endGame() {
+    #endRound(isGameOver) {
         this.isGameGoing = false;
         this.timer.stopTimer();
         this.soundboard.stopMusic();
         this.pageManager.displayInBetweenGamesElements();
         this.pageManager.hideInBetweenGamesElements();
+        if (isGameOver) {
+            this.soundboard.playSound("gameOverSound", .1);
+        }
+        else {
+            this.pageManager.hideNewGameButton();
+            this.pageManager.displayNextRoundButton();
+            this.soundboard.playSound("clearSound", .1);
+        }
     }
 
     nextRound() {
@@ -128,12 +136,7 @@ class Whomp {
             this.scoreWord(Math.pow(2, word.length - 3) * 50);
             this.foundWords.push(word);
             if (this.foundWords.length === this.answerArray.length) {
-                this.#endGame();
-                this.pageManager.displayInBetweenRoundsElements();
-                this.pageManager.hideInBetweenGamesElements();
-                this.pageManager.hideNewGameButton();
-                this.pageManager.displayNextRoundButton();
-                this.soundboard.playSound("clearSound", .1);
+                this.#endRound(false);
             } else {
                 this.soundboard.playSound("correctSound", 1);
             }
