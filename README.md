@@ -1,4 +1,4 @@
-# wordwhiz
+# Word Whiz
 
 Word Whiz is based on popular word scramble games like Word Whomp and Text Twist.  
 Try to unscramble all of the words in the time limit.  
