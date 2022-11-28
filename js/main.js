@@ -51,6 +51,13 @@ function putWord(e, index) {
     e.blur();
 }
 
+function putSelectedLetterBack(e, index) {
+    if (whiz.getIsGameGoing()) {
+        whiz.putSelectedLetterBack(index);
+    }
+    e.blur();
+}
+
 document.addEventListener("keydown", function(event) {
     if (whiz.getIsGameGoing()) {
         if (event.key === "Backspace") {

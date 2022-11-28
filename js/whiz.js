@@ -230,6 +230,23 @@ class Whiz {
         }
     }
 
+    putSelectedLetterBack(index) {
+        if (this.usedLetterIndex > index) {
+            let originalPosition = this.originalPositionArray[index-1];
+            this.originalPositionArray.splice(index-1, 1);
+            let letterToBeRemoved = document.getElementById("usedLetterRow" + index.toString()).innerHTML;
+            document.getElementById("usedLetterRow" + index.toString()).innerHTML = '';
+            document.getElementById("unusedLetterRow" + originalPosition.toString()).innerHTML = letterToBeRemoved;
+            this.usedLetterIndex--;
+
+            for (let i=index; i<6; i++) {
+                let nextLetter = document.getElementById("usedLetterRow" + (i+1).toString()).innerHTML;
+                document.getElementById("usedLetterRow" + i.toString()).innerHTML = nextLetter;
+                document.getElementById("usedLetterRow" + (i+1).toString()).innerHTML = '';
+            }
+        }
+    }
+
     putLetterBack() {
         if (this.usedLetterIndex > 1) {
             let index = this.originalPositionArray.pop();
@@ -254,6 +271,7 @@ class Whiz {
             this.pageManager.clearUsedLetterRow();
             this.pageManager.populateUnusedLetterTable(this.scrambledLetters);
             this.usedLetterIndex = 1;
+            this.originalPositionArray = [];
             if (playSound) {
                 this.soundboard.playSound("shuffleSound", 0.4);
             }
