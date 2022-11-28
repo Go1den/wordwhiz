@@ -1,4 +1,4 @@
-class Whomp {
+class Whiz {
 
     dictionary;
     seedWord;
@@ -55,7 +55,9 @@ class Whomp {
 
     giveUp() {
         for (let i=0; i<this.answerArray.length; i++) {
-            this.revealWord(i);
+            if (this.foundWords.indexOf(this.answerArray[i]) < 0) {
+                this.revealWord(i, '#580808');
+            }
         }
         this.#endRound(true);
     }
@@ -96,7 +98,11 @@ class Whomp {
         this.pageManager.turnOffWelcomeScreenElements();
         this.pageManager.addBorderedClass();
         this.pageManager.turnOnGameElements();
-        this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1);
+        if (this.round > 8) {
+            this.soundboard.playSound("thinkSound8", 0.1);
+        } else {
+            this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1);
+        }
         this.timer.setTimer(150);
         this.timer.startTimer();
     }
@@ -132,13 +138,13 @@ class Whomp {
         let foundWordsIndex = this.foundWords.indexOf(word);
 
         if (answerArrayIndex >= 0 && foundWordsIndex < 0) {
-            this.revealWord(answerArrayIndex);
+            this.revealWord(answerArrayIndex, '#4CAF50');
             this.scoreWord(Math.pow(2, word.length - 3) * 50);
             this.foundWords.push(word);
             if (this.foundWords.length === this.answerArray.length) {
                 this.#endRound(false);
             } else {
-                this.soundboard.playSound("correctSound", 1);
+                this.soundboard.playSound("correctSound", 0.5);
             }
         } else {
             this.soundboard.playSound("wrongSound", 1);
@@ -159,7 +165,7 @@ class Whomp {
         }
     }
 
-    revealWord(index) {
+    revealWord(index, color) {
         let word = this.answerArray[index];
         let charArray = word.split('');
         let newInnerHTML = '';
@@ -168,6 +174,7 @@ class Whomp {
             newInnerHTML += '<image src=\"images/tiles/' + letter + '.png\" width=30px; height=30px;/>';
         }
         document.getElementById("answer" + (index+1).toString()).innerHTML = newInnerHTML;
+        document.getElementById("answer" + (index+1).toString()).style.backgroundColor = color;
     }
 
     addLetter(field, index) {

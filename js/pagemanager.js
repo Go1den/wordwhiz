@@ -56,6 +56,7 @@ class PageManager {
     clearAllTables() {
         for(let i=1; i<29; i++) {
             document.getElementById("answer" + i.toString()).innerHTML = '';
+            document.getElementById("answer" + i.toString()).style.backgroundColor = '';
         }
         for(let i=1; i<7; i++) {
             document.getElementById("usedLetterRow" + i.toString()).innerHTML = '';

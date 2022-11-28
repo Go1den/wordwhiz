@@ -2,14 +2,14 @@ class Timer {
 
     duration;
     isRunning;
-    whomp;
+    whiz;
     minutes;
     seconds;
 
-    constructor (durationInSeconds, whomp) {
+    constructor (durationInSeconds, whiz) {
         this.duration = durationInSeconds;
         this.isRunning = false;
-        this.whomp = whomp;
+        this.whiz = whiz;
     }
 
     startTimer() {
@@ -45,7 +45,7 @@ class Timer {
         if (this.duration <= 0) {
             this.isRunning = false;
             clearInterval(this.interval);
-            this.whomp.giveUp();
+            this.whiz.giveUp();
         }
     }
 

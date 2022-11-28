@@ -1,59 +1,59 @@
-let whomp = new Whomp();
+let whiz = new Whiz();
 
 function newGame(e) {
-    whomp.newGame();
+    whiz.newGame();
     e.blur();
 }
 
 function nextRound(e) {
-    whomp.nextRound();
+    whiz.nextRound();
     e.blur();
 }
 
 function scramble(e) {
-    if (whomp.getIsGameGoing()) {
-        whomp.scramble(true);
+    if (whiz.getIsGameGoing()) {
+        whiz.scramble(true);
     }
     e.blur();
 }
 
 function addLetter(field, index) {
-    if (whomp.getIsGameGoing()) {
-        whomp.addLetter(field, index);
+    if (whiz.getIsGameGoing()) {
+        whiz.addLetter(field, index);
     }
 }
 
 function putLetterBack(e) {
-    if (whomp.getIsGameGoing()) {
-        whomp.putLetterBack();
+    if (whiz.getIsGameGoing()) {
+        whiz.putLetterBack();
     }
     e.blur();
 }
 
 function submit(e) {
-    if (whomp.getIsGameGoing()) {
-        whomp.submit();
+    if (whiz.getIsGameGoing()) {
+        whiz.submit();
     }
     e.blur();
 }
 
 function giveUp(e) {
-    if (whomp.getIsGameGoing()) {
-        whomp.giveUp();
+    if (whiz.getIsGameGoing()) {
+        whiz.giveUp();
     }
     e.blur();
 }
 
 document.addEventListener("keydown", function(event) {
-    if (whomp.getIsGameGoing()) {
+    if (whiz.getIsGameGoing()) {
         if (event.key === "Backspace") {
-            whomp.putLetterBack();
+            whiz.putLetterBack();
         } else if (event.key === "Enter") {
-            whomp.submit();
+            whiz.submit();
         } else if (event.code.startsWith("Key") && event.code.length == 4) {
             let charCode = event.code.charCodeAt(3);
             if (charCode >= 65 && charCode <= 90) {
-                whomp.typeLetter(event.code.charAt(3));
+                whiz.typeLetter(event.code.charAt(3));
             }
         }
     }

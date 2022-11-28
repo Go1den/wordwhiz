@@ -1,8 +1,8 @@
 <html>
     <head>
-        <title>Word Whomp by Go1den</title>
+        <title>Word Whiz by Go1den</title>
         <link rel="stylesheet" href="css/w3.css">
-        <link rel="stylesheet" href="css/whomp.css">
+        <link rel="stylesheet" href="css/whiz.css">
     </head>
     <body>
         <br>
@@ -10,7 +10,7 @@
         <div class="w3-container offAtStart">
             <table>
                 <tr>
-                    <td>
+                    <td style="align: left">
                         <table class="bordered">
                             <caption><strong>Round</strong></caption>
                             <tr>
@@ -85,7 +85,7 @@
             </table>
         </div>
         <!-- <br> -->
-        <div class="w3-container onAtStartOnly" id="wordWhompRow1">
+        <div class="w3-container onAtStartOnly" id="wordWhizRow1">
             <table>
                 <tr>
                     <td class="letterRow"><image src="images/tiles/W.png"/></td>
@@ -96,14 +96,13 @@
             </table>
         </div>
         <!-- <br> -->
-        <div class="w3-container onAtStartOnly" id="wordWhompRow2">
+        <div class="w3-container onAtStartOnly" id="wordWhizRow2">
             <table>
                 <tr>
                     <td class="letterRow"><image src="images/tiles/W.png"/></td>
                     <td class="letterRow"><image src="images/tiles/H.png"/></td>
-                    <td class="letterRow"><image src="images/tiles/O.png"/></td>
-                    <td class="letterRow"><image src="images/tiles/M.png"/></td>
-                    <td class="letterRow"><image src="images/tiles/P.png"/></td>
+                    <td class="letterRow"><image src="images/tiles/I.png"/></td>
+                    <td class="letterRow"><image src="images/tiles/Z.png"/></td>
                 </tr>
             </table>
         </div>
@@ -111,10 +110,10 @@
             <table class="bordered">
                 <caption><strong>Current Guess</strong></caption>
                 <tr>
-                    <td id="usedLetterRow1" class="letterRow"><image src="images/tiles/W.png"/></td>
-                    <td id="usedLetterRow2" class="letterRow"><image src="images/tiles/O.png"/></td>
-                    <td id="usedLetterRow3" class="letterRow"><image src="images/tiles/R.png"/></td>
-                    <td id="usedLetterRow4" class="letterRow"><image src="images/tiles/D.png"/></td>
+                    <td id="usedLetterRow1" class="letterRow"></td>
+                    <td id="usedLetterRow2" class="letterRow"></td>
+                    <td id="usedLetterRow3" class="letterRow"></td>
+                    <td id="usedLetterRow4" class="letterRow"></td>
                     <td id="usedLetterRow5" class="letterRow"></td>
                     <td id="usedLetterRow6" class="letterRow"></td>
                 </tr>
@@ -125,11 +124,11 @@
             <table class="bordered">
                 <caption><strong>Your Tiles</strong></caption>
                 <tr>
-                    <td id="unusedLetterRow1" class="letterRow" onclick="addLetter('unusedLetterRow1', 1)"><image src="images/tiles/W.png"/></td>
-                    <td id="unusedLetterRow2" class="letterRow" onclick="addLetter('unusedLetterRow2', 2)"><image src="images/tiles/H.png"/></td>
-                    <td id="unusedLetterRow3" class="letterRow" onclick="addLetter('unusedLetterRow3', 3)"><image src="images/tiles/O.png"/></td>
-                    <td id="unusedLetterRow4" class="letterRow" onclick="addLetter('unusedLetterRow4', 4)"><image src="images/tiles/M.png"/></td>
-                    <td id="unusedLetterRow5" class="letterRow" onclick="addLetter('unusedLetterRow5', 5)"><image src="images/tiles/P.png"/></td>
+                    <td id="unusedLetterRow1" class="letterRow" onclick="addLetter('unusedLetterRow1', 1)"></td>
+                    <td id="unusedLetterRow2" class="letterRow" onclick="addLetter('unusedLetterRow2', 2)"></td>
+                    <td id="unusedLetterRow3" class="letterRow" onclick="addLetter('unusedLetterRow3', 3)"></td>
+                    <td id="unusedLetterRow4" class="letterRow" onclick="addLetter('unusedLetterRow4', 4)"></td>
+                    <td id="unusedLetterRow5" class="letterRow" onclick="addLetter('unusedLetterRow5', 5)"></td>
                     <td id="unusedLetterRow6" class="letterRow" onclick="addLetter('unusedLetterRow6', 6)"></td>
                 </tr>
             </table>
@@ -157,7 +156,7 @@
         </div>
     </body>
     <script src="js/dictionary.js"></script>
-    <script src="js/whomp.js"></script>
+    <script src="js/whiz.js"></script>
     <script src="js/soundboard.js"></script>
     <script src="js/timer.js"></script>
     <script src="js/pagemanager.js"></script>

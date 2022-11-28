@@ -534,7 +534,6 @@ class Dictionary {
 "soy",
 "spa",
 "spy",
-"ssh",
 "sty",
 "sub",
 "sue",
@@ -698,7 +697,6 @@ class Dictionary {
         "ammo",
         "amok",
         "amps",
-        "anal",
         "anew",
         "ankh",
         "anon",
@@ -8313,7 +8311,6 @@ class Dictionary {
 "amount",
 "amours",
 "amuses",
-"anally",
 "analog",
 "anchor",
 "anemia",
@@ -13376,7 +13373,6 @@ class Dictionary {
             for (let j=0; j<wordSet.length; j++) {
                 let substring = wordSet[j];
                 if (this.#isValidSubstring(substring, word)) {
-                    console.log(substring);
                     result.push(substring.toUpperCase());
                 }
             }
