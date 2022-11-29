@@ -1,11 +1,5 @@
 let whiz = new Whiz();
 
-function define(index) {
-    if (!whiz.getIsGameGoing()) {
-        whiz.updateDefinition(index);
-    }
-}
-
 function newGame(e) {
     whiz.newGame();
     e.blur();
@@ -50,9 +44,11 @@ function giveUp(e) {
     e.blur();
 }
 
-function putWord(e, index) {
+function onAnswerBoardClick(e, index) {
     if (whiz.getIsGameGoing()) {
         whiz.typePreviouslyFoundWord(index);
+    } else {
+        whiz.updateDefinition(index);
     }
     e.blur();
 }
