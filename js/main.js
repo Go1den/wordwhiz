@@ -1,5 +1,11 @@
 let whiz = new Whiz();
 
+function define(index) {
+    if (!whiz.getIsGameGoing()) {
+        whiz.updateDefinition(index);
+    }
+}
+
 function newGame(e) {
     whiz.newGame();
     e.blur();

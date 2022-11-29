@@ -92,4 +92,22 @@ class PageManager {
         return result;
     }
 
+    updateDefinition(definition) {
+        document.getElementById("definitionText").innerHTML = definition;
+        document.getElementById("definitionText").scrollTop = 0;
+    }
+
+    showDefinition() {
+        document.getElementById("definition").style.display = 'initial';
+    }
+
+    hideDefinition() {
+        document.getElementById("definitionText").innerHTML = '';
+        document.getElementById("definition").style.display = 'none';
+    }
+
+    hideGuessAndTiles() {
+        document.getElementById("usedLetterRow").style.display = 'none';
+        document.getElementById("unusedLetterRow").style.display = 'none';
+    }
 }

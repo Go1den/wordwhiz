@@ -7,6 +7,13 @@ caption {
     background-color: rgb(6, 24, 19);
 }
 
+.scroll {
+    height: 300px;
+    overflow-y: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 div {
     width: 800px;
     margin-left: auto;
@@ -18,6 +25,11 @@ div {
 table {
     margin-left: auto;
     margin-right: auto;
+}
+
+.definition {
+    height: 300px;
+    width: 800px;
 }
 
 .text {

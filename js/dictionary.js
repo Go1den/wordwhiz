@@ -4591,7 +4591,6 @@ class Dictionary {
 "faded",
 "fades",
 "faery",
-"fagot",
 "fails",
 "faint",
 "fairs",
@@ -9721,7 +9720,6 @@ class Dictionary {
 "faeces",
 "faerie",
 "fagged",
-"faggot",
 "faille",
 "fairer",
 "fairly",
@@ -13397,4 +13395,29 @@ class Dictionary {
         return result;
     }
 
+    async lookup(word) {
+        let result = '';
+        let myObject = await fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + word);
+        let myText = await myObject.text();
+        let json = JSON.parse(myText);
+        let hasWordBeenShown = false;
+        for(let i=0; i<json.length; i++) {
+            let word = json[i].word;
+            if (!hasWordBeenShown) {
+                result += '<h2>' + word + '</h2>';
+                hasWordBeenShown = true;
+            }
+            for (let j=0; j<json[i].meanings.length; j++) {
+                let meaning = json[i].meanings[j];
+                let partOfSpeech = meaning.partOfSpeech;
+                result += '<p><strong>' + partOfSpeech + '</strong></p>';
+                for(let k=0; k<meaning.definitions.length; k++) {
+                    let definition = meaning.definitions[k].definition;
+                    result += '<p>' + (k+1) + '. ' + definition + '</p>';
+                }
+                result += '<br>';
+            }
+        }
+        return result;
+    }
 }

@@ -49,50 +49,49 @@
             <table class="bordered">
                 <caption><strong>Answer Board</strong></caption>
                 <tr>
-                    <td onclick="putWord(this, 1)" id="answer1"></td>
-                    <td onclick="putWord(this, 8)" id="answer8"></td>
-                    <td onclick="putWord(this, 15)" id="answer15"></td>
-                    <td onclick="putWord(this, 22)" id="answer22"></td>
+                    <td onclick="define(1)" onclick="putWord(this, 1)" id="answer1"></td>
+                    <td onclick="define(8)" onclick="putWord(this, 8)" id="answer8"></td>
+                    <td onclick="define(15)" onclick="putWord(this, 15)" id="answer15"></td>
+                    <td onclick="define(22)" onclick="putWord(this, 22)" id="answer22"></td>
                 </tr>
                 <tr>
-                    <td onclick="putWord(this, 2)" id="answer2"></td>
-                    <td onclick="putWord(this, 9)" id="answer9"></td>
-                    <td onclick="putWord(this, 16)" id="answer16"></td>
-                    <td onclick="putWord(this, 23)" id="answer23"></td>
+                    <td onclick="define(2)" onclick="putWord(this, 2)" id="answer2"></td>
+                    <td onclick="define(9)" onclick="putWord(this, 9)" id="answer9"></td>
+                    <td onclick="define(16)" onclick="putWord(this, 16)" id="answer16"></td>
+                    <td onclick="define(23)" onclick="putWord(this, 23)" id="answer23"></td>
                 </tr>
                 <tr>
-                    <td onclick="putWord(this, 3)" id="answer3"></td>
-                    <td onclick="putWord(this, 10)" id="answer10"></td>
-                    <td onclick="putWord(this, 17)" id="answer17"></td>
-                    <td onclick="putWord(this, 24)" id="answer24"></td>
+                    <td onclick="define(3)" onclick="putWord(this, 3)" id="answer3"></td>
+                    <td onclick="define(10)" onclick="putWord(this, 10)" id="answer10"></td>
+                    <td onclick="define(17)" onclick="putWord(this, 17)" id="answer17"></td>
+                    <td onclick="define(24)" onclick="putWord(this, 24)" id="answer24"></td>
                 </tr>
                 <tr>
-                    <td onclick="putWord(this, 4)" id="answer4"></td>
-                    <td onclick="putWord(this, 11)" id="answer11"></td>
-                    <td onclick="putWord(this, 18)" id="answer18"></td>
-                    <td onclick="putWord(this, 25)" id="answer25"></td>
+                    <td onclick="define(4)" onclick="putWord(this, 4)" id="answer4"></td>
+                    <td onclick="define(11)" onclick="putWord(this, 11)" id="answer11"></td>
+                    <td onclick="define(18)" onclick="putWord(this, 18)" id="answer18"></td>
+                    <td onclick="define(25)" onclick="putWord(this, 25)" id="answer25"></td>
                 </tr>
                 <tr>
-                    <td onclick="putWord(this, 5)" id="answer5"></td>
-                    <td onclick="putWord(this, 12)" id="answer12"></td>
-                    <td onclick="putWord(this, 19)" id="answer19"></td>
-                    <td onclick="putWord(this, 26)" id="answer26"></td>
+                    <td onclick="define(5)" onclick="putWord(this, 5)" id="answer5"></td>
+                    <td onclick="define(12)" onclick="putWord(this, 12)" id="answer12"></td>
+                    <td onclick="define(19)" onclick="putWord(this, 19)" id="answer19"></td>
+                    <td onclick="define(26)" onclick="putWord(this, 26)" id="answer26"></td>
                 </tr>
                 <tr>
-                    <td onclick="putWord(this, 6)" id="answer6"></td>
-                    <td onclick="putWord(this, 13)" id="answer13"></td>
-                    <td onclick="putWord(this, 20)" id="answer20"></td>
-                    <td onclick="putWord(this, 27)" id="answer27"></td>
+                    <td onclick="define(6)" onclick="putWord(this, 6)" id="answer6"></td>
+                    <td onclick="define(13)" onclick="putWord(this, 13)" id="answer13"></td>
+                    <td onclick="define(20)" onclick="putWord(this, 20)" id="answer20"></td>
+                    <td onclick="define(27)" onclick="putWord(this, 27)" id="answer27"></td>
                 </tr>
                 <tr>
-                    <td onclick="putWord(this, 7)" id="answer7"></td>
-                    <td onclick="putWord(this, 14)" id="answer14"></td>
-                    <td onclick="putWord(this, 21)" id="answer21"></td>
-                    <td onclick="putWord(this, 28)" id="answer28"></td>
+                    <td onclick="define(7)" onclick="putWord(this, 7)" id="answer7"></td>
+                    <td onclick="define(14)" onclick="putWord(this, 14)" id="answer14"></td>
+                    <td onclick="define(21)" onclick="putWord(this, 21)" id="answer21"></td>
+                    <td onclick="define(28)" onclick="putWord(this, 28)" id="answer28"></td>
                 </tr>
             </table>
         </div>
-        <!-- <br> -->
         <div class="w3-container onAtStartOnly" id="wordWhizRow1">
             <table>
                 <tr>
@@ -103,7 +102,6 @@
                 </tr>
             </table>
         </div>
-        <!-- <br> -->
         <div class="w3-container onAtStartOnly" id="wordWhizRow2">
             <table>
                 <tr>
@@ -111,6 +109,14 @@
                     <td class="letterRow"><image src="images/tiles/H.png"/></td>
                     <td class="letterRow"><image src="images/tiles/I.png"/></td>
                     <td class="letterRow"><image src="images/tiles/Z.png"/></td>
+                </tr>
+            </table>
+        </div>
+        <div class="w3-container offAtStart" id="definition">
+            <table class="bordered definition">
+                <caption><strong>Definition (Click an answer above)</strong></caption>
+                <tr>
+                    <td><div class="scroll" id="definitionText"></div></td>
                 </tr>
             </table>
         </div>
@@ -127,7 +133,6 @@
                 </tr>
             </table>
         </div>
-        <!-- <br> -->
         <div class="w3-container offAtStart" id="unusedLetterRow">
             <table class="bordered">
                 <caption><strong>Your Tiles</strong></caption>
@@ -141,7 +146,6 @@
                 </tr>
             </table>
         </div>
-        <!-- <br> -->
         <div class="w3-container">
             <table class="offAtStart gameButtons">
                 <tr>
@@ -164,19 +168,22 @@
         </div>
         <div class="w3-container onAtStartOnly" id="howToPlay">
             <h3><strong>How to play:</strong></h3>
-            <p>Score points by making words using the tiles provided to you. Score enough points in a round to advance to the next one. Find all the words in a round and earn a 1000 point bonus.</p>
+            <p>Score points by making words using the tiles provided to you.<br>
+            Score enough points in a round to advance to the next one.<br>
+            Find all the words in a round and earn a 1000 point bonus.</p>
             <br>
             <p><strong>Keyboard</strong></p>
-            <p>Type any letter to add it to the word.</p>
-            <p>Space Bar - Shuffles the tiles in your tray.</p>
-            <p>Backspace - Removes the last typed letter.</p>
-            <p>Enter - Submits a guess, or types the last submitted guess automatically.</p>
+            <p>Type any letter to add it to the word.<br>
+            Space Bar - Shuffles the tiles in your tray.<br>
+            Backspace - Removes the last typed letter.<br>
+            Enter - Submits a guess, or types the last submitted guess automatically.</p>
             <br>
             <p><strong>Mouse</strong></p>
-            <p>Click on any letter tile to add it to the word.</p>
-            <p>Click on any letter tile in the guessed word to bring it back to the tray.</p>
-            <p>Click on any previously found word in the Answer Board to automatically type it again.</p>
+            <p>Click on any letter tile to add it to the word.<br>
+            Click on any letter tile in the guessed word to bring it back to the tray.<br>
+            Click on any previously found word in the Answer Board to automatically type it again.</p>
         </div>
+    </div>
     </body>
     <script src="js/dictionary.js"></script>
     <script src="js/whiz.js"></script>

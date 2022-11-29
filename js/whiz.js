@@ -19,7 +19,6 @@ class Whiz {
     roundThresholdPoints;
     lastSubmittedGuess = '';
 
-
     constructor() {
         this.dictionary = new Dictionary();
         this.soundboard = new Soundboard();
@@ -52,6 +51,7 @@ class Whiz {
         this.pageManager.turnOffWelcomeScreenElements();
         this.pageManager.addBorderedClass();
         this.pageManager.turnOnGameElements();
+        this.pageManager.hideDefinition();
         this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1);
         this.timer.setTimer(150);
         this.timer.startTimer();
@@ -90,6 +90,8 @@ class Whiz {
         this.isGameGoing = false;
         this.timer.stopTimer();
         this.soundboard.stopMusic();
+        this.pageManager.showDefinition();
+        this.pageManager.hideGuessAndTiles();
         this.pageManager.displayInBetweenGamesElements();
         this.pageManager.hideInBetweenGamesElements();
         if (isGameOver && this.roundThresholdPoints > 0) {
@@ -130,6 +132,7 @@ class Whiz {
         this.pageManager.turnOffWelcomeScreenElements();
         this.pageManager.addBorderedClass();
         this.pageManager.turnOnGameElements();
+        this.pageManager.hideDefinition();
         if (this.round > 8) {
             this.soundboard.playSound("thinkSound8", 0.1);
         } else {
@@ -305,6 +308,18 @@ class Whiz {
             for (let i=0; i<selectedWord.length; i++) {
                 this.typeLetter(selectedWord.charAt(i));
             }
+        }
+    }
+
+    hideDefinition() {
+        this.pageManager.hideDefinition();
+    }
+
+    async updateDefinition(index) {
+        if (index <= this.answerArray.length) {
+            let word = this.answerArray[index-1];
+            let result = await this.dictionary.lookup(word);
+            this.pageManager.updateDefinition(result);
         }
     }
 }
