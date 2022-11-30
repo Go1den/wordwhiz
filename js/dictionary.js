@@ -9715,8 +9715,6 @@ class Dictionary {
 "facile",
 "facing",
 "fading",
-"faecal",
-"faeces",
 "faerie",
 "faille",
 "fairer",
