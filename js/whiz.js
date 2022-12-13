@@ -18,12 +18,24 @@ class Whiz {
     totalRoundPoints;
     roundThresholdPoints;
     lastSubmittedGuess = '';
+    isTimedGame;
 
     constructor() {
         this.dictionary = new Dictionary();
         this.soundboard = new Soundboard();
-        this.timer = new Timer(150, this);
         this.pageManager = new PageManager();
+    }
+
+    newTimedGame() {
+        this.isTimedGame = true;
+        this.pageManager.setMode("Timed");
+        this.newGame();
+    }
+
+    newEndlessGame() {
+        this.isTimedGame = false;
+        this.pageManager.setMode("Endless");
+        this.newGame();
     }
 
     newGame() {
@@ -31,9 +43,9 @@ class Whiz {
         this.usedLetterIndex = 1;
         this.lastSubmittedGuess = '';
         this.round = 1;
-        this.setRound();
+        this.pageManager.setRound(this.round);
         this.score = 0;
-        this.setScore();
+        this.pageManager.setScore(this.score);
         this.foundWords = new Array();
         this.seedWord = this.dictionary.getRandomSixLetterWord();
         this.upperCaseSeedWord = this.seedWord.toUpperCase();
@@ -52,8 +64,28 @@ class Whiz {
         this.pageManager.addBorderedClass();
         this.pageManager.turnOnGameElements();
         this.pageManager.hideDefinition();
-        this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1);
-        this.timer.setTimer(150);
+        this.setThinkMusic();
+        this.setRoundTimer();
+    }
+
+    setThinkMusic() {
+        if (this.round > 8) {
+            this.soundboard.playSound("thinkSound8", 0.1, true);
+        } else {
+            this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1, true);
+        }
+    }
+
+    setRoundTimer() {
+        if (this.isTimedGame) {
+            if (this.round > 7) {
+                this.timer = new Timer(120, this, true);
+            } else {
+                this.timer = new Timer(150, this, true);
+            }
+        } else {
+            this.timer = new Timer(0, this, false);
+        }
         this.timer.startTimer();
     }
 
@@ -95,7 +127,7 @@ class Whiz {
         this.pageManager.displayInBetweenGamesElements();
         this.pageManager.hideInBetweenGamesElements();
         if (isGameOver && this.roundThresholdPoints > 0) {
-            this.soundboard.playSound("gameOverSound", .1);
+            this.soundboard.playSound("gameOverSound", .1, false);
         }
         else {
             if (!isGameOver) {
@@ -103,13 +135,13 @@ class Whiz {
             }
             this.pageManager.hideNewGameButton();
             this.pageManager.displayNextRoundButton();
-            this.soundboard.playSound("clearSound", .1);
+            this.soundboard.playSound("clearSound", .1, false);
         }
     }
 
     nextRound() {
         this.round++;
-        this.setRound();
+        this.pageManager.setRound(this.round);
         this.lastSubmittedGuess = '';
         this.usedLetterIndex = 1;
         this.isGameGoing = true;
@@ -133,22 +165,13 @@ class Whiz {
         this.pageManager.addBorderedClass();
         this.pageManager.turnOnGameElements();
         this.pageManager.hideDefinition();
-        if (this.round > 8) {
-            this.soundboard.playSound("thinkSound8", 0.1);
-        } else {
-            this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1);
-        }
-        if (this.round > 7) {
-            this.timer.setTimer(120);
-        } else {
-            this.timer.setTimer(150);
-        }
-        this.timer.startTimer();
+        this.setThinkMusic();
+        this.setRoundTimer();
     }
 
     scoreWord(points) {
         this.score += points;
-        this.setScore();
+        this.pageManager.setScore(this.score);
         this.roundThresholdPoints -= points;
         this.setThreshold();
     }
@@ -159,14 +182,6 @@ class Whiz {
         } else {
             document.getElementById("threshold").innerHTML = '<strong>' + 'Clear!' + '</strong>';
         }
-    }
-
-    setScore() {
-        document.getElementById("score").innerHTML = '<strong>' + this.score + '</strong>';
-    }
-
-    setRound() {
-        document.getElementById("round").innerHTML = '<strong>' + this.round + '</strong>';
     }
 
     submit() {
@@ -195,10 +210,10 @@ class Whiz {
                 if (this.foundWords.length === this.answerArray.length) {
                     this.#endRound(false);
                 } else {
-                    this.soundboard.playSound("correctSound", 0.5);
+                    this.soundboard.playSound("correctSound", 0.5, false);
                 }
             } else {
-                this.soundboard.playSound("wrongSound", 1);
+                this.soundboard.playSound("wrongSound", 1, false);
             }
             for (let i=0; i<word.length; i++) {
                 this.putLetterBack();
@@ -282,7 +297,7 @@ class Whiz {
             this.usedLetterIndex = 1;
             this.originalPositionArray = [];
             if (playSound) {
-                this.soundboard.playSound("shuffleSound", 0.4);
+                this.soundboard.playSound("shuffleSound", 0.4, false);
             }
         }
     }

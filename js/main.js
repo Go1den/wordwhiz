@@ -1,7 +1,12 @@
 let whiz = new Whiz();
 
-function newGame(e) {
-    whiz.newGame();
+function newTimedGame(e) {
+    whiz.newTimedGame();
+    e.blur();
+}
+
+function newEndlessGame(e) {
+    whiz.newEndlessGame();
     e.blur();
 }
 

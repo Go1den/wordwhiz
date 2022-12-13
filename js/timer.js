@@ -5,11 +5,13 @@ class Timer {
     whiz;
     minutes;
     seconds;
+    isCountingDown;
 
-    constructor (durationInSeconds, whiz) {
+    constructor (durationInSeconds, whiz, isCountingDown) {
         this.duration = durationInSeconds;
         this.isRunning = false;
         this.whiz = whiz;
+        this.isCountingDown = isCountingDown;
     }
 
     startTimer() {
@@ -21,6 +23,10 @@ class Timer {
     updateHTML() {
         let timerHTML = document.getElementById("timer");
         timerHTML.innerHTML = '<strong>' + this.minutes + ":" + this.seconds + '</strong>';
+    }
+
+    setIsCountingDown(isCountingDown) {
+        this.isCountingDown = isCountingDown;
     }
 
     setTime() {
@@ -39,9 +45,12 @@ class Timer {
     }
 
     updateTimer() {
-        --this.duration;
+        if (this.isCountingDown) {
+            --this.duration;
+        } else {
+            ++this.duration;
+        }
         this.setTime();
-
         if (this.duration <= 0) {
             this.isRunning = false;
             clearInterval(this.interval);

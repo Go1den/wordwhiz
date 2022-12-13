@@ -10,7 +10,15 @@
         <div class="w3-container offAtStart">
             <table>
                 <tr>
-                    <td>
+                    <td class="stats">
+                        <table class="bordered">
+                            <caption><strong>Game Mode</strong></caption>
+                            <tr>
+                                <td class="text" id="mode"><strong></strong></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="stats">
                         <table class="bordered">
                             <caption><strong>Round</strong></caption>
                             <tr>
@@ -18,7 +26,7 @@
                             </tr>
                         </table>
                     </td>
-                    <td>
+                    <td class="stats">
                         <table class="bordered">
                             <caption><strong>Score</strong></caption>
                             <tr>
@@ -26,7 +34,7 @@
                             </tr>
                         </table>
                     </td>
-                    <td>
+                    <td class="stats">
                         <table class="bordered">
                             <caption><strong>To Advance</strong></caption>
                             <tr>
@@ -34,7 +42,7 @@
                             </tr>
                         </table>
                     </td>
-                    <td>
+                    <td class="stats">
                         <table class="bordered">
                             <caption><strong>Time</strong></caption>
                         <tr>
@@ -157,7 +165,8 @@
             </table>
             <table class="onAtStartOnly newGame">
                 <tr>
-                    <td><button onclick="newGame(this)">New Game</button></td>
+                    <td><button onclick="newTimedGame(this)">New Timed Game</button></td>
+                    <td><button onclick="newEndlessGame(this)">New Endless Game</button></td>
                 </tr>
             </table>
             <table class="round">

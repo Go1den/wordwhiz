@@ -30,10 +30,13 @@ class Soundboard {
         this.soundMap.set("gameOverSound", this.gameOverSound);
     }
 
-    playSound(soundName, volume) {
+    playSound(soundName, volume, isLoop) {
         let targetSound = this.soundMap.get(soundName);
         targetSound.currentTime = 0;
         targetSound.volume = volume;
+        if (isLoop) {
+            targetSound.loop = true;
+        }
         targetSound.play();
     }
 

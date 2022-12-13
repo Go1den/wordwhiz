@@ -110,4 +110,16 @@ class PageManager {
         document.getElementById("usedLetterRow").style.display = 'none';
         document.getElementById("unusedLetterRow").style.display = 'none';
     }
+
+    setScore(score) {
+        document.getElementById("score").innerHTML = '<strong>' + score + '</strong>';
+    }
+
+    setRound(round) {
+        document.getElementById("round").innerHTML = '<strong>' + round + '</strong>';
+    }
+
+    setMode(mode) {
+        document.getElementById("mode").innerHTML = '<strong>' + mode + '</strong>';
+    }
 }
