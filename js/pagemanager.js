@@ -122,4 +122,9 @@ class PageManager {
     setMode(mode) {
         document.getElementById("mode").innerHTML = '<strong>' + mode + '</strong>';
     }
+
+    updateSoundButton(isSoundOn) {
+        let text = isSoundOn ? 'Mute' : 'Unmute';
+        document.getElementById("soundButton").innerHTML = text;
+    }
 }

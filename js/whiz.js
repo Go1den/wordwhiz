@@ -19,6 +19,7 @@ class Whiz {
     roundThresholdPoints;
     lastSubmittedGuess = '';
     isTimedGame;
+    isSoundOn = true;
 
     constructor() {
         this.dictionary = new Dictionary();
@@ -68,11 +69,21 @@ class Whiz {
         this.setRoundTimer();
     }
 
+    toggleSound() {
+        if (this.isSoundOn) {
+            this.soundboard.muteAllSounds();
+        } else {
+            this.soundboard.resumeThinkMusic();
+        }
+        this.isSoundOn = !this.isSoundOn;
+        this.pageManager.updateSoundButton(this.isSoundOn);
+    }
+
     setThinkMusic() {
         if (this.round > 8) {
-            this.soundboard.playSound("thinkSound8", 0.1, true);
+            this.soundboard.playSound("thinkSound8", 0.1, true, this.isSoundOn);
         } else {
-            this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1, true);
+            this.soundboard.playSound("thinkSound" + this.round.toString(), 0.1, true, this.isSoundOn);
         }
     }
 
@@ -127,7 +138,7 @@ class Whiz {
         this.pageManager.displayInBetweenGamesElements();
         this.pageManager.hideInBetweenGamesElements();
         if (isGameOver && this.roundThresholdPoints > 0) {
-            this.soundboard.playSound("gameOverSound", .1, false);
+            this.soundboard.playSound("gameOverSound", .1, false, this.isSoundOn);
         }
         else {
             if (!isGameOver) {
@@ -135,7 +146,7 @@ class Whiz {
             }
             this.pageManager.hideNewGameButton();
             this.pageManager.displayNextRoundButton();
-            this.soundboard.playSound("clearSound", .1, false);
+            this.soundboard.playSound("clearSound", .1, false, this.isSoundOn);
         }
     }
 
@@ -210,10 +221,10 @@ class Whiz {
                 if (this.foundWords.length === this.answerArray.length) {
                     this.#endRound(false);
                 } else {
-                    this.soundboard.playSound("correctSound", 0.5, false);
+                    this.soundboard.playSound("correctSound", 0.5, false, this.isSoundOn);
                 }
             } else {
-                this.soundboard.playSound("wrongSound", 1, false);
+                this.soundboard.playSound("wrongSound", 1, false, this.isSoundOn);
             }
             for (let i=0; i<word.length; i++) {
                 this.putLetterBack();
@@ -297,7 +308,7 @@ class Whiz {
             this.usedLetterIndex = 1;
             this.originalPositionArray = [];
             if (playSound) {
-                this.soundboard.playSound("shuffleSound", 0.4, false);
+                this.soundboard.playSound("shuffleSound", 0.4, false, this.isSoundOn);
             }
         }
     }

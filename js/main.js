@@ -1,5 +1,10 @@
 let whiz = new Whiz();
 
+function toggleSound(e) {
+    whiz.toggleSound();
+    e.blur();
+}
+
 function newTimedGame(e) {
     whiz.newTimedGame();
     e.blur();

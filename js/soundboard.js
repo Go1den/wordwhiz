@@ -13,6 +13,7 @@ class Soundboard {
     clearSound = new Audio("audio/clear.mp3");
     gameOverSound = new Audio("audio/gameover.mp3");
     soundMap = new Map();
+    currentThinkSound;
 
     constructor () {
         this.soundMap.set("correctSound", this.correctSound);
@@ -30,20 +31,35 @@ class Soundboard {
         this.soundMap.set("gameOverSound", this.gameOverSound);
     }
 
-    playSound(soundName, volume, isLoop) {
+    playSound(soundName, volume, isLoop, isSoundOn) {
         let targetSound = this.soundMap.get(soundName);
         targetSound.currentTime = 0;
-        targetSound.volume = volume;
+        if (soundName.includes("think")) {
+            this.currentThinkSound = targetSound;
+        }
+        if (isSoundOn) {
+            targetSound.volume = volume;
+        } else {
+            targetSound.volume = 0;
+        }
         if (isLoop) {
             targetSound.loop = true;
         }
         targetSound.play();
     }
 
+    resumeThinkMusic() {
+        this.currentThinkSound.volume = .1;
+    }
+
     stopAllSounds() {
         this.soundMap.forEach((v) => v.pause());
     }
 
+    muteAllSounds() {
+        this.soundMap.forEach((v) => v.volume = 0);
+    }
+    
     stopMusic() {
         this.thinkSound1.pause();
         this.thinkSound2.pause();

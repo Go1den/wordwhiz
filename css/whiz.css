@@ -7,6 +7,10 @@ caption {
     background-color: rgb(6, 24, 19);
 }
 
+.gameButton {
+    width: 140px;
+}
+
 .stats {
     width: 161px;
 }
