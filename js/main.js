@@ -54,6 +54,10 @@ function giveUp(e) {
     e.blur();
 }
 
+function backToHomeScreen(e) {
+    location.href = "https://go1den.github.io/wordwhiz";
+}
+
 function onAnswerBoardClick(e, index) {
     if (whiz.getIsGameGoing()) {
         whiz.typePreviouslyFoundWord(index);
